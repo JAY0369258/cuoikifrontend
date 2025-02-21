@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPab - Apple(VN)</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        /* 1. Header
+/*----------------------------------------------*/
+        .site-header {
+            position: fixed;
+            width: 100%;
+            z-index: 10;
+            transition: background 0.3s ease-out;
+        }
+
+        .navbar-toggler svg.navbar-icon {
+            width: 50px;
+            height: 50px;
+        }
+
+        .navbar-nav .nav-item a.nav-link {
+            color: black;
+        }
+
+        .navbar-nav .nav-item a.nav-link.active,
+        .navbar-nav .nav-item a.nav-link:focus,
+        .navbar-nav .nav-item a.nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        /*------------ Offcanvas -------------- */
+        #header-nav .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        #header-nav .offcanvas.show {
+            z-index: 9999;
+            background-color: #f6f4f4d4;
+        }
+
+        #header-nav .offcanvas-end {
+            width: 500px;
+        }
+
+        .offcanvas.show .offcanvas-body .navbar-nav {
+            align-items: unset !important;
+            padding-left: 20px;
+        }
+
+        /*------------ Top User Icons -----------*/
+        .site-header .user-items svg {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        @media only screen and (max-width: 991px) {
+            #navbar .user-items {
+                display: none;
+            }
+        }
+
+        .product-section {
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        .product-section h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .product-item {
+            text-align: center;
+            margin-bottom: 30px;
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            height: 100%;
+            /* Đảm bảo chiều cao đồng đều */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            /* Phân bổ đều các phần tử */
+        }
+
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+            object-fit: contain;
+            /* Giữ nguyên tỉ lệ hình ảnh */
+        }
+
+        .product-item h5 {
+            font-weight: bold;
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        .product-item p {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: auto;
+            /* Đẩy phần mô tả lên */
+        }
+
+        .btn-learn-more {
+            margin-top: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 20px;
+            padding: 10px 15px;
+            font-size: 0.9rem;
+            align-self: center;
+            /* Giữ nút ở giữa */
+        }
+
+        .color-dots {
+            margin: 10px 0;
+        }
+
+        .color-dots span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 0 3px;
+            border-radius: 50%;
+        }
+
+        .color-gold {
+            background: #d4af37;
+        }
+
+        .color-blue {
+            background: #007bff;
+        }
+
+        .color-pink {
+            background: #ffb6c1;
+        }
+
+        .color-gray {
+            background: #a9a9a9;
+        }
+
+        .color-black {
+            background: #000;
+        }
+
+        .icon-container {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin: 10px;
+        }
+
+        .feature-card h5 {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .battery {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        /* 8. Footer
+/*----------------------------------------------*/
+        /*------------ Social Icon -----------*/
+        .social-links svg {
+            width: 20px;
+            height: 20px;
+            color: var(--light-gray-color);
+        }
+
+        .social-links svg:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links li {
+            padding-right: 30px;
+        }
+
+        body {
+            background-color: #f6f4f4d4;
+        }
+
+        .image-container {
+            overflow: hidden;
+            /* Ẩn phần hình ảnh bị tràn */
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            /* Giữ tỉ lệ ảnh */
+
+        }
+
+        .menu-item a {
+            text-decoration: none;
+            color: #5b5b5b;
+        }
+
+        .product-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-item:hover {
+            transform: translateY(-10px);
+            /* Di chuyển sản phẩm lên trên */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            /* Thêm bóng đổ */
+        }
+
+        .btn-learn-more {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-learn-more:hover {
+            background-color: #0056b3;
+            /* Đổi màu nền khi hover */
+            color: #fff;
+            /* Đổi màu chữ khi hover */
+        }
+
+        /*chu nho*/
+
+        .container1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header1 h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .content1 p {
+            margin: 10px 0;
+            font-size: smaller;
+        }
+
+        .content1 a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .content1 a:hover {
+            text-decoration: underline;
+        }
+
+        @media only screen and (max-width: 320px) {
+            .carousel-inner .row .col-md-3 {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media only screen and (max-width: 375px) {
+            .carousel-inner .row .col-md-3 {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media only screen and (max-width: 425px) {
+            .carousel-inner .row .col-md-3 {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!--DAU Trang Header-->
+    <header id="header" class="site-header header-scrolled position-fixed text-black bg-light">
+        <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="123.html">
+                    <h2 class="animate__animated animate__flip">AT Apple Zone</h2>
+
+                </a>
+                <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <svg class="navbar-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="">
+                        <!-- Biểu tượng SVG mới -->
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                    </svg>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar"
+                    aria-labelledby="bdNavbarOffcanvasLabel">
+                    <div class="offcanvas-header px-4 pb-0">
+                        <a class="navbar-brand" href="123.html">
+                            <h2 class="animate__animated animate__flip">AT Apple Zone</h2>
+                        </a>
+                        <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas"
+                            aria-label="Close" data-bs-target="#bdNavbar"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul id="navbar"
+                            class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link me-4 active" href="123.html">Trang chủ</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link me-4" href="Sanphamiphone.html">iphone</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link me-4" href="SanphamIpad.html">Ipad</a>
+                            </li>
+
+                            <li class="nav-item" hidden>
+                                <a class="nav-link me-4" href="">Watches</a>
+                            </li>
+                            <li class="nav-item" hidden>
+                                <a class="nav-link me-4" href="">AirPods</a>
+                            </li>
+                            <li class="nav-item" hidden>
+                                <a class="nav-link me-4" href="https://www.apple.com/vn/services/">Blog</a>
+
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link me-4" href="servinces.html">Hỗ Trợ</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link me-4 dropdown-toggle link-dark" data-bs-toggle="dropdown" href="#"
+                                    role="button" aria-expanded="false">Khác</a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="dangnhapdangky.html" class="dropdown-item">Đăng Nhập</a>
+                                    </li>
+                                    <li>
+                                        <a href="dangnhapdangky.html" class="dropdown-item">Đăng Ký</a>
+                                    </li>
+                                    <li>
+                                        <a href="cart.html" class="dropdown-item">Giỏ Hàng</a>
+                                    </li>
+                                    <li>
+                                        <a href="Newsroom.html" class="dropdown-item">Newsroom</a>
+                                    </li>
+                                    <li>
+                                        <a href="lienhe.html" class="dropdown-item">Liên Hệ</a>
+                                    </li>
+                                    <li>
+                                        <a href="timkiem.html" class="dropdown-item">Tìm Kiếm</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <div class="user-items ps-5">
+                                    <ul class="d-flex justify-content-end list-unstyled">
+                                        <li class="search-item pe-3">
+                                            <a href="timkiem.html" class="search-button">
+                                                <div class="search">
+                                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="pe-3">
+                                            <a href="dangnhapdangky.html">
+                                                <div class="user">
+                                                    <i class="fa-solid fa-user"></i>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="cart.html">
+                                                <div class="cart">
+                                                    <i class="fa-solid fa-cart-shopping"></i>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="image-container">
+        <img src="hinhipad/screenshot20240507at101326am-1715092299681-1715092300960779534443.png" alt="">
+    </div>
+
+    <section class="product-section">
+        <div class="container">
+            <h1>Khám phá dòng sản phẩm.</h1>
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+
+                <!-- Sản phẩm 1 -->
+                <div class="col">
+                    <div class="product-item">
+                        <img src="hinhipad/pt_ipad_pro__6bgrkek0jnm2_xlarge.png" alt="iPhone 16 Pro">
+                        <div class="color-dots">
+                            <span class="color-black"></span>
+                            <span class="color-gray"></span>
+                        </div>
+                        <h5>iPad Pro</h5>
+                        <p>Trải nghiệm iPad cực đỉnh với công nghệ tiên tiến hàng đầu.<br><b>Từ 28.999.000đ hoặc
+                                1.181.000đ/th. trong 24 tháng*</b></p>
+                        <a href="chitietsanphamIpad.html" class="btn btn-learn-more">Tìm Hiểu Thêm</a>
+                    </div>
+                </div>
+
+                <!-- Sản phẩm 2 -->
+                <div class="col">
+                    <div class="product-item">
+                        <img src="hinhipad/pt_ipad_air__cr381zljqdiu_xlarge.png" alt="iPhone 16">
+                        <div class="color-dots">
+                            <span class="color-blue"></span>
+                            <span class="color-gray"></span>
+                        </div>
+                        <h5>iPad Air</h5>
+                        <p>Hiệu năng mạnh mẽ trong một thiết kế mỏng nhẹ.<br><b>Từ 16.999.000đ hoặc 692.000đ/th. trong
+                                24 tháng*</b></p>
+                        <a href="chitietsanphamIpad.html" class="btn btn-learn-more">Tìm Hiểu Thêm</a>
+                    </div>
+                </div>
+
+                <!-- Sản phẩm 3 -->
+                <div class="col">
+                    <div class="product-item">
+                        <img src="hinhipad/pt_ipad_10th_gen__ej5p5x6yf2gm_xlarge.png" alt="iPhone 15"
+                            style="height: 310px;">
+                        <div class="color-dots">
+                            <span class="color-pink"></span>
+                            <span class="color-gray"></span>
+                            <span class="color-gold"></span>
+                        </div>
+                        <h5>iPad</h5>
+                        <p>iPad màn hình toàn phần, đầy màu sắc. Cho mọi tác vụ hàng ngày.<br><b>Từ 9.999.000đ hoặc
+                                407.000đ/th. trong 24 tháng*</b></p>
+                        <a href="chitietsanphamIpad.html" class="btn btn-learn-more">Tìm Hiểu Thêm</a>
+                    </div>
+                </div>
+
+                <!-- Sản phẩm 4 -->
+                <div class="col">
+                    <div class="product-item">
+                        <img src="hinhipad/pt_ipad_mini__f3iy3qb50gia_xlarge.png" alt="iPhone 14"
+                            style="height: 310px;">
+                        <div class="color-dots">
+                            <span class="color-gray"></span>
+                            <span class="color-black"></span>
+                        </div>
+                        <h6 style="color: red;">Mới</h6>
+                        <h5>iPad mini</h5>
+                        <p>Trải nghiệm trọn vẹn iPad trong một thiết kế siêu gọn nhẹ.<br><b>Từ 13.999.000đ hoặc
+                                570.000đ/th. trong 24 tháng*</b></p>
+                        <a href="chitietsanphamIpad.html" class="btn btn-learn-more">Tìm Hiểu Thêm</a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <div class="container my-5">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <!-- Card 1 -->
+            <div class="col">
+                <div class="feature-card">
+                    <div class="icon-container">
+                        <i class="bi bi-cpu"></i>
+                        <img src="hinhiphone/product_tile_icon_a18__bpom9lrselte_large.png" alt="">
+                    </div>
+                    <h5>13″ hoặc 11″<br>
+                        Màn hình Ultra Retina XDR4<br>
+                        Công nghệ ProMotion<br>
+                        Dải màu rộng P3<br>
+                        Tùy chọn mặt kính màn hình có cấu trúc nano<br>
+                        trên các phiên bản 1TB và 2TB</h5>
+                    <img src="hinhiphone/product_tile_icon_apple_intelligence__cy36nscjfrma_large.png" alt="">
+                    <p>Được thiết kế cho Apple Intelligence</p>
+                    <img src="hinhiphone/product_tile_icon_camera_button__e83hkgwaefam_large.png" alt="">
+                    <p>Điều Khiển Camera</p>
+                    <img src="hinhiphone/product_tile_icon_iphone_16_camera__fbzexjpz33iy_large.png" alt="">
+                    <p><strong>Hệ thống camera kép tiến tiến</strong><br>Camera Fusion 48MP<br>Telephoto 2x<br>Camera
+                        Ultra Wide 12MP</p>
+                    <img src="hinhiphone/product_tile_icon_battery_100__den5pjokk60y_large.png" alt="">
+                    <p class="battery">Thời gian xem video lên đến 27 giờ</p>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="col">
+                <div class="feature-card">
+                    <div class="icon-container">
+                        <i class="bi bi-cpu"></i>
+                        <img src="hinhiphone/product_tile_icon_a18__bpom9lrselte_large.png" alt="">
+                    </div>
+                    <h5>13″ hoặc 11″<br>
+                        Màn hình Ultra Retina XDR4<br>
+                        Công nghệ ProMotion<br>
+                        Dải màu rộng P3<br>
+                        Tùy chọn mặt kính màn hình có cấu trúc nano<br>
+                        trên các phiên bản 1TB và 2TB</h5>
+                    <img src="hinhiphone/product_tile_icon_apple_intelligence__cy36nscjfrma_large.png" alt="">
+                    <p>Được thiết kế cho Apple Intelligence</p>
+                    <img src="hinhiphone/product_tile_icon_camera_button__e83hkgwaefam_large.png" alt="">
+                    <p>Điều Khiển Camera</p>
+                    <img src="hinhiphone/product_tile_icon_iphone_16_camera__fbzexjpz33iy_large.png" alt="">
+                    <p><strong>Hệ thống camera kép tiến tiến</strong><br>Camera Fusion 48MP<br>Telephoto 2x<br>Camera
+                        Ultra Wide 12MP</p>
+                    <img src="hinhiphone/product_tile_icon_battery_100__den5pjokk60y_large.png" alt="">
+                    <p class="battery">Thời gian xem video lên đến 27 giờ</p>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="col">
+                <div class="feature-card">
+                    <div class="icon-container">
+                        <i class="bi bi-cpu"></i>
+                        <img src="hinhiphone/product_tile_icon_a18__bpom9lrselte_large.png" alt="">
+                    </div>
+                    <h5>13″ hoặc 11″<br>
+                        Màn hình Ultra Retina XDR4<br>
+                        Công nghệ ProMotion<br>
+                        Dải màu rộng P3<br>
+                        Tùy chọn mặt kính màn hình có cấu trúc nano<br>
+                        trên các phiên bản 1TB và 2TB</h5>
+                    <img src="hinhiphone/product_tile_icon_apple_intelligence__cy36nscjfrma_large.png" alt="">
+                    <p>Được thiết kế cho Apple Intelligence</p>
+                    <img src="hinhiphone/product_tile_icon_camera_button__e83hkgwaefam_large.png" alt="">
+                    <p>Điều Khiển Camera</p>
+                    <img src="hinhiphone/product_tile_icon_iphone_16_camera__fbzexjpz33iy_large.png" alt="">
+                    <p><strong>Hệ thống camera kép tiến tiến</strong><br>Camera Fusion 48MP<br>Telephoto 2x<br>Camera
+                        Ultra Wide 12MP</p>
+                    <img src="hinhiphone/product_tile_icon_battery_100__den5pjokk60y_large.png" alt="">
+                    <p class="battery">Thời gian xem video lên đến 27 giờ</p>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="col">
+                <div class="feature-card">
+                    <div class="icon-container">
+                        <i class="bi bi-cpu"></i>
+                        <img src="hinhiphone/product_tile_icon_a18__bpom9lrselte_large.png" alt="">
+                    </div>
+                    <h5>13″ hoặc 11″<br>
+                        Màn hình Ultra Retina XDR4<br>
+                        Công nghệ ProMotion<br>
+                        Dải màu rộng P3<br>
+                        Tùy chọn mặt kính màn hình có cấu trúc nano<br>
+                        trên các phiên bản 1TB và 2TB</h5>
+                    <img src="hinhiphone/product_tile_icon_apple_intelligence__cy36nscjfrma_large.png" alt="">
+                    <p>Được thiết kế cho Apple Intelligence</p>
+                    <img src="hinhiphone/product_tile_icon_camera_button__e83hkgwaefam_large.png" alt="">
+                    <p>Điều Khiển Camera</p>
+                    <img src="hinhiphone/product_tile_icon_iphone_16_camera__fbzexjpz33iy_large.png" alt="">
+                    <p><strong>Hệ thống camera kép tiến tiến</strong><br>Camera Fusion 48MP<br>Telephoto 2x<br>Camera
+                        Ultra Wide 12MP</p>
+                    <img src="hinhiphone/product_tile_icon_battery_100__den5pjokk60y_large.png" alt="">
+                    <p class="battery">Thời gian xem video lên đến 27 giờ</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container text-center my-5">
+        <h1 class="fw-bold">Vì sao AT Apple Zone là nơi tốt nhất để mua iPhone</h1>
+        <div class="row mt-4">
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body">
+                        <i class="fa-solid fa-wallet" style="font-size: 50px;"></i>
+                        <h5 class="card-title mt-3">Tiết kiệm với Apple Trade In.</h5>
+                        <p class="card-text">Nhận 5.000.000đ – 22.200.000đ dưới hình thức điểm tín dụng khi bạn trao đổi
+                            iPhone 12 trở lên.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body">
+                        <i class="fa-solid fa-money-bill" style="font-size: 50px;"></i>
+                        <h5 class="card-title mt-3">Thanh toán hàng tháng thật dễ dàng.</h5>
+                        <p class="card-text">Bao gồm lựa chọn lãi suất 0%.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body">
+                        <i class="fa-solid fa-truck" style="font-size: 50px;"></i>
+                        <h5 class="card-title mt-3">Giao hàng miễn phí.</h5>
+                        <p class="card-text">Giao hàng miễn phí thẳng đến tận nhà.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body">
+                        <i class="fa-solid fa-cart-shopping" style="font-size: 50px;"></i>
+                        <h5 class="card-title mt-3">Mua sắm với Chuyên Gia.</h5>
+                        <p class="card-text">Chọn iPhone mới với sự hỗ trợ từ Chuyên Gia tận tâm.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--chu nho-->
+    <div class="container1">
+        <div class="header1" style="text-align: left;">
+            <h1>Câu Hỏi Thường Gặp về Giao Hàng</h1>
+        </div>
+        <div class="content1">
+            <p>∆ Dịch vụ thương mại được cung cấp bởi các đối tác trao đổi của Apple. Báo giá giá trị trao đổi chỉ mang
+                tính ước tính và giá trị thực tế có thể thấp hơn ước tính. Giá trị đổi cũ lấy mới sẽ khác nhau tùy theo
+                tình trạng, năm và cấu hình của thiết bị đủ điều kiện đổi của bạn. Không phải tất cả các thiết bị đều đủ
+                điều kiện nhận điểm tín dụng. Bạn phải ít nhất ở độ tuổi thành niên để đủ điều kiện giao dịch tín dụng.
+                <br>
+                Giá trị đổi cũ lấy mới có thể sẽ được áp dụng cho thiết bị đủ điều kiện mới bạn mua. Ước tính giá trị
+                thực tế được dựa trên việc có nhận được thiết bị đủ điều kiện khớp với thông tin bạn đã mô tả hay không.
+                Thuế giá trị gia tăng (GTGT) có thể sẽ được tính trên toàn bộ giá trị của thiết bị mới bạn mua. Bạn phải
+                xuất trình giấy tờ tùy thân hợp lệ (luật địa phương có thể yêu cầu lưu thông tin này). Các đối tác trao
+                đổi của Apple có quyền từ chối, hủy bỏ hoặc giới hạn số lượng của bất kỳ giao dịch đổi cũ lấy mới nào vì
+                bất kỳ lý do gì. Bạn có thể tìm hiểu thêm thông tin từ đối tác đổi cũ lấy mới của Apple về việc đổi cũ
+                lấy mới và đối tác tái chế về việc tái chế các thiết bị đủ điều kiện. Các hạn chế và giới hạn có thể
+                được áp dụng. Có thể sẽ áp dụng Điều khoản và giới hạn về việc tái chế thiết bị đủ điều kiện. <br>
+                * Trả góp theo tháng với lãi suất 1,67%, sau khi thanh toán lần đầu 20%. Có thêm tùy chọn thanh toán khi
+                hoàn tất giao dịch. Chương trình Trả Góp Hàng Tháng Với MoMo do đối tác tín dụng cung cấp qua ứng dụng
+                MoMo của Công Ty Cổ Phần Dịch Vụ Di Động Trực Tuyến (“MoMo”) chứ không phải Apple. Chỉ cư dân Việt Nam
+                đủ điều kiện mới có thể mua sản phẩm đủ điều kiện qua chương trình này. Tất cả sản phẩm được mua qua
+                hình thức Trả Góp Hàng Tháng Với MoMo đều cần có tài khoản ví điện tử MoMo và phải được đối tác tín dụng
+                của MoMo phê duyệt. Nếu bạn có câu hỏi về điều kiện tín dụng của mình, vui lòng liên hệ với MoMo để nhận
+                câu trả lời từ đối tác tín dụng của MoMo. Ngoài ra, vui lòng tham khảo ứng dụng MoMo hoặc đối tác tín
+                dụng của MoMo để biết điều kiện, phí và phụ phí. Apple có toàn quyền quyết định sản phẩm nào đủ điều
+                kiện hưởng ưu đãi trả góp vào bất cứ lúc nào. Mọi thay đổi về việc lựa chọn sản phẩm, kỳ hạn trả góp và
+                lãi suất đều sẽ làm thay đổi ưu đãi trả góp hàng tháng. Lãi suất quy định là lãi suất tính theo phần
+                trăm hàng tháng. Áp dụng số tiền mua tối thiểu 3.000.000đ cho sản phẩm đủ điều kiện và cần phải thanh
+                toán trước 20% cho mọi sản phẩm bạn mua. Đơn hàng phải được đặt trên Apple Store Trực Tuyến
+                apple.com/vn. Sản phẩm được mua từ Apple Store Trực Tuyến Dành cho Doanh Nghiệp và Apple Store Trực
+                Tuyến Dành Cho Ngành Giáo Dục không đủ điều kiện hưởng ưu đãi trả góp hàng tháng của MoMo. Tiền sẽ được
+                tính vào tài khoản MoMo của bạn khi sản phẩm được vận chuyển đến bạn. Lãi suất hàng tháng trong ưu đãi
+                trả góp của MoMo được tính dựa trên giá bán lẻ của sản phẩm do Apple cung cấp. Giá được hiển thị đã bao
+                gồm thuế GTGT. Số tiền thanh toán hàng tháng được hiển thị chỉ là con số ước tính. Số tiền thanh toán
+                hàng tháng thực tế của bạn sẽ được hiển thị trong phần báo cáo sử dụng trên ứng dụng MoMo. Khi bạn chọn
+                thanh toán qua hình thức Trả Góp Hàng Tháng Với MoMo, Apple có thể sẽ cần chia sẻ số điện thoại di động
+                của bạn với MoMo để xác minh danh tính và hoàn tất yêu cầu thanh toán của bạn. Apple sẽ luôn xử lý thông
+                tin của bạn theo Chính Sách Quyền Riêng Tư của Apple, có tại apple.com/legal/privacy/vn. Mọi thông tin
+                do MoMo thu thập sẽ tuân thủ chính sách quyền riêng tư của họ. <br>
+                ** Gói thanh toán trả góp bằng Thẻ Tín Dụng có thể được áp dụng cho các cá nhân đủ điều kiện có sở hữu
+                thẻ tín dụng phù hợp của ACB, BIDV, HSBC, Sacombank, Shinhanbank, VIB, Vietcombank, VP Bank. Ðể đủ điều
+                kiện sử dụng gói trả góp bằng Thẻ Tín Dụng trong 3, 6, 9 hoặc 12 tháng thì giá trị mua hàng cho một giao
+                dịch của bạn phải trên 3.000.000đ. Tất cả đơn mua hàng áp dụng gói trả góp bằng Thẻ Tín Dụng phải được
+                bên phát hành thẻ tín dụng của bạn phê duyệt. Vui lòng tham khảo trang web của bên phát hành thẻ tín
+                dụng của bạn để biết các thông tin về điều kiện, phí và lệ phí. Ưu đãi trả góp chỉ được áp dụng cho
+                khách hàng cá nhân sử dụng thẻ tín dụng tiêu dùng. Các đơn hàng mua trên Cửa Hàng Giáo Dục, cửa hàng SMB
+                và đơn mua hàng của tổ chức không đủ điều kiện để áp dụng ưu đãi này. Ðơn mua hàng bằng Thẻ Ghi Nợ không
+                đủ điều kiện để áp dụng ưu đãi này. Nếu đơn hàng trả góp không được bên phát hành thẻ tín dụng của bạn
+                phê duyệt thì chúng tôi sẽ không được thông báo lý do. Vui lòng liên hệ bên phát hành thẻ tín dụng của
+                bạn để biết thêm thông tin. Ưu đãi áp dụng cho giá đã niêm yết hoặc trên tem giá. Khoản phí tài chính sẽ
+                được liệt kê trên sao kê thẻ tín dụng của bạn. Bạn có thể sẽ phải trả một khoản phí xử lý nếu chọn thanh
+                toán qua Trả Góp Bằng Thẻ Tín Dụng. Các khoản phí đi kèm sẽ được thay đổi tùy theo thời hạn áp dụng và
+                tùy vào ngân hàng. Bạn cũng có thể tìm thêm những thông tin khác tại đây. Bạn sẽ được tính phí mua hàng
+                ngay khi đặt hàng và sau đó thanh toán sẽ được chuyển sang hình thức trả góp. Nếu vì bất kỳ lý do gì làm
+                đơn hàng của bạn không được chuyển sang hình thức trả góp, vui lòng liên hệ trực tiếp với ngân hàng phát
+                hành thẻ tín dụng của bạn để được giải đáp thắc mắc và hỗ trợ. Apple không chịu trách nhiệm đối với quy
+                trình chuyển đổi thanh toán trả góp hay được thông báo về lý do tại sao quy trình chuyển đổi này lại
+                không thành công. <br>
+                Phiên bản beta của Apple Intelligence khả dụng trên tất cả các phiên bản iPhone 16, iPhone 15 Pro và
+                iPhone 15 Pro Max, với Siri và ngôn ngữ thiết bị được thiết lập là tiếng Anh (Úc, Canada, Ireland, New
+                Zealand, Nam Phi, Vương quốc Anh hoặc Mỹ), trên một bản cập nhật iOS 18. Một số tính năng và ngôn ngữ bổ
+                sung sẽ ra mắt vào tháng 4, và các ngôn ngữ khác sẽ ra mắt sau trong cùng năm. Các ngôn ngữ được hỗ trợ
+                trong năm 2025 bao gồm tiếng Trung, tiếng Anh (Ấn Độ, Singapore), tiếng Pháp, tiếng Đức, tiếng Ý, tiếng
+                Nhật, tiếng Hàn, tiếng Bồ Đào Nha, tiếng Tây Ban Nha, và tiếng Việt. <br>
+                Xác nhận về thời lượng pin dành cho các phiên bản lớn hơn. Tất cả các xác nhận về thời lượng pin phụ
+                thuộc vào cấu hình mạng và nhiều yếu tố khác; các kết quả thực tế sẽ khác nhau. Pin có giới hạn chu kỳ
+                sạc và cuối cùng có thể cần được thay thế. Thời lượng pin và chu kỳ sạc khác nhau tùy theo cách sử dụng
+                và cài đặt. Truy cập apple.com/vn/batteries và apple.com/vn/iphone/battery.html để biết thêm thông tin.
+                Cần có gói cước dữ liệu. Mạng 5G chỉ khả dụng ở một số thị trường và được cung cấp qua một số nhà mạng.
+                Tốc độ có thể thay đổi tùy địa điểm và nhà mạng. Để biết thông tin về hỗ trợ mạng 5G, vui lòng liên hệ
+                nhà mạng và truy cập apple.com/vn/iphone/cellular. <br>
+                Phụ kiện được bán riêng. <br>
+                Cáp Sạc USB-C đi kèm tương thích với AirPods Pro (thế hệ thứ 2) với Hộp Sạc MagSafe (USB-C).
+                iPhone 16, iPhone 16 Plus, iPhone 16 Pro và iPhone 16 Pro Max có khả năng chống tia nước, chống nước và
+                chống bụi. Sản phẩm đã qua kiểm nghiệm trong điều kiện phòng thí nghiệm có kiểm soát đạt mức IP68 theo
+                tiêu chuẩn IEC 60529 (chống nước ở độ sâu tối đa 6 mét trong vòng tối đa 30 phút). Khả năng chống tia
+                nước, chống nước và chống bụi không phải là các điều kiện vĩnh viễn, và khả năng này có thể giảm do hao
+                mòn thông thường. Không sạc pin khi iPhone đang bị ướt. Vui lòng tham khảo hướng dẫn sử dụng để biết
+                cách lau sạch và làm khô máy. Không bảo hành sản phẩm bị hỏng do thấm chất lỏng. <br>
+                Dựa trên phân bổ cân bằng khối lượng. <br>
+                Nguồn cung ứng sợi gỗ có trách nhiệm được quy định trong Thông Số Kỹ Thuật Sợi Có Trách Nhiệm Của Apple.
+                <br>
+                Chúng tôi cũng xem tre là sợi gỗ. <br>
+                Tất cả các xác nhận về thời lượng pin phụ thuộc vào cấu hình mạng và nhiều yếu tố khác; các kết quả thực
+                tế sẽ khác nhau. Pin có giới hạn chu kỳ sạc và cuối cùng có thể cần được thay thế. Thời lượng pin và chu
+                kỳ sạc khác nhau tùy theo cách sử dụng và cài đặt. Truy cập apple.com/vn/batteries và
+                apple.com/vn/iphone/battery.html để biết thêm thông tin. <br>
+                Để sử dụng Apple Pay, bạn cần có thẻ được hỗ trợ từ đơn vị phát hành thẻ tham gia chương trình. Để kiểm
+                tra xem thẻ của bạn có tương thích với Apple Pay hay không, hãy liên hệ với đơn vị phát hành thẻ của
+                bạn. <br>
+
+                Apple Pay không khả dụng tại một số thị trường. Xem các quốc gia và khu vực hỗ trợ Apple Pay. <br>
+
+                Yêu cầu iPhone và Apple Watch có chip Ultra Wideband thế hệ thứ 2. Tính năng Ultra Wideband chỉ khả dụng
+                ở một số khu vực. <br>
+                Một số tính năng có thể thay đổi. Một số tính năng, ứng dụng và dịch vụ chỉ khả dụng ở một số khu vực
+                hoặc ngôn ngữ. <br>
+
+                Một số tính năng yêu cầu phải có các phần cứng và phần mềm nhất định. Để biết thêm thông tin, truy cập
+                trang Tính Năng Khả Dụng. <br>
+
+                Honor of Kings: World sẽ ra mắt sau. <br>
+            </p>
+        </div>
+    </div>
+
+    <!--Cuoi Trang Footer-->
+    <footer id="footer" class="overflow-hidden">
+        <div class="container">
+            <div class="row">
+                <div class="footer-top-area">
+                    <div class="row d-flex flex-wrap justify-content-between">
+                        <div class="col-lg-3 col-sm-6 pb-3">
+                            <div class="footer-menu">
+                                <img src="jmef1gao-removebg-preview.png" alt="logo" width="100" height="100">
+                                <p>"Kết nối con người, thúc đẩy sáng tạo. Apple, không chỉ là sản phẩm, mà là phong cách
+                                    sống."</p>
+                                <div class="social-links">
+                                    <ul class="d-flex list-unstyled">
+                                        <li>
+                                            <a href="#">
+                                                <svg class="facebook">
+                                                    <use xlink:href="#facebook" />
+                                                </svg>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <svg class="instagram">
+                                                    <use xlink:href="#instagram" />
+                                                </svg>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <svg class="twitter">
+                                                    <use xlink:href="#twitter" />
+                                                </svg>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <svg class="linkedin">
+                                                    <use xlink:href="#linkedin" />
+                                                </svg>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <svg class="youtube">
+                                                    <use xlink:href="#youtube" />
+                                                </svg>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-6 pb-3">
+                            <div class="footer-menu text-uppercase">
+                                <h5 class="widget-title pb-2">Về Apple</h5>
+                                <ul class="menu-list list-unstyled text-uppercase">
+                                    <li class="menu-item pb-2">
+                                        <a href="#">Newsroom</a>
+                                    </li>
+                                    <li class="menu-item pb-2">
+                                        <a href="#">Lãnh đạo Apple</a>
+                                    </li>
+                                    <li class="menu-item pb-2">
+                                        <a href="#">Nhà Đầu Tư</a>
+                                    </li>
+                                    <li class="menu-item pb-2">
+                                        <a href="#">Đạo Đức & Quy Tắc</a>
+                                    </li>
+                                    <li class="menu-item pb-2">
+                                        <a href="#">Sự Kiện</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 pb-3">
+                            <div class="footer-menu text-uppercase">
+                                <h5 class="widget-title pb-2">Giá Trị Cốt Lõi</h5>
+                                <ul class="menu-list list-unstyled">
+                                    <li class="menu-item pb-2">
+                                        <a href="#">Trợ Năng</a>
+                                    </li>
+                                    <li class="menu-item pb-2">
+                                        <a href="#">Môi Trường</a>
+                                    </li>
+                                    <li class="menu-item pb-2">
+                                        <a href="#">Quyền Riêng Tư</a>
+                                    </li>
+                                    <li class="menu-item pb-2">
+                                        <a href="#">Chuỗi Cung Ứng</a>
+                                    </li>
+                                    <li class="menu-item pb-2">
+                                        <a href="#">Apple Và Doanh Nghiêp</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 pb-3">
+                            <div class="footer-menu contact-item">
+                                <h5 class="widget-title text-uppercase pb-2">Liên Hệ</h5>
+                                <p>Nếu bạn có bất cứ câu hỏi? <a href="mailto:">Imboss@gmail.com</a>
+                                </p>
+                                <p>Bạn Cần Hỗ Trợ. Hãy liên Hệ <a href="">+84 123 456 789</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </footer>
+    <div id="footer-bottom">
+        <div class="container">
+            <div class="row d-flex flex-wrap justify-content-between">
+                <div class="col-md-4 col-sm-6">
+                    <div class="Shipping d-flex">
+                        <p>We ship with:</p>
+                        <div class="card-wrap ps-2">
+                            <img src="images/dhl.png" alt="visa">
+                            <img src="images/shippingcard.png" alt="mastercard">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="payment-method d-flex">
+                        <p>Payment options:</p>
+                        <div class="card-wrap ps-2">
+                            <img src="images/visa.jpg" alt="visa">
+                            <img src="images/mastercard.jpg" alt="mastercard">
+                            <img src="images/paypal.jpg" alt="paypal">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="copyright">
+                        <p>© 2025 AT Apple Zone. Design by <a href="">AnhTuan</a> Distribution by <a href="">APPLEVN</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

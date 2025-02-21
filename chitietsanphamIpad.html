@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm - iPad Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+
+        .product-detail-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            padding: 20px;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-image {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .product-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .product-info p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            color: #007bff;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .btn-buy {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 1rem;
+            margin-top: 20px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-buy:hover {
+            background: linear-gradient(45deg, #0056b3, #003f7f);
+            transform: translateY(-3px);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 1rem;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        header {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        header img {
+            border-radius: 5px;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            padding: 15px;
+            background: #f9f9f9;
+            border-top: 1px solid #ddd;
+        }
+
+        .feature-list {
+            margin-top: 20px;
+        }
+
+        .feature-list h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .feature-list ul {
+            list-style: none;
+            padding: 0;
+            font-size: 1rem;
+        }
+
+        .feature-list ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+            color: #555;
+        }
+
+        .feature-list ul li:last-child {
+            border-bottom: none;
+        }
+
+        .additional-info {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .additional-info h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .additional-info p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .specifications {
+            margin-top: 20px;
+        }
+
+        .specifications table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .specifications th,
+        .specifications td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .specifications th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+
+        /* phan 2 hinh nho*/
+        body {
+            background-color: #121212;
+
+        }
+
+        .phone-card {
+            background-color: #1c1c1e;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .phone-card img {
+            max-height: 400px;
+            /* Giới hạn chiều cao */
+            object-fit: contain;
+            /* Giữ tỷ lệ hình ảnh */
+            border-radius: 10px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /*chu nho*/
+
+        .container1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .content1 p {
+            margin: 10px 0;
+            font-size: smaller;
+        }
+
+        .content1 a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .content1 a:hover {
+            text-decoration: underline;
+        }
+
+        @media only screen and (max-width: 320px) {
+            .carousel-inner .row .col-md-3 {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media only screen and (max-width: 375px) {
+            .carousel-inner .row .col-md-3 {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media only screen and (max-width: 425px) {
+            .carousel-inner .row .col-md-3 {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="bg-primary text-white py-4">
+        <div class="container d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Logo Apple"
+                    class="me-3" style="height: 50px;">
+                <h1 class="h2 mb-0 fw-bold">Chi tiết sản phẩm - iPad Pro</h1>
+            </div>
+            <nav>
+                <a href="Sanphamiphone.html" class="btn btn-light btn-sm">← Quay lại</a>
+                <a href="cart.html" class="btn btn-light btn-sm">🛒 Giỏ Hàng Của Bạn</a>
+            </nav>
+        </div>
+    </header>
+    <div class="product-detail-container" data-aos="fade-up">
+        <div class="row">
+            <div class="col-md-6 product-image" data-aos="zoom-in">
+                <img src="hinhipad/pt_ipad_pro__6bgrkek0jnm2_xlarge.png" alt="iPad Pro">
+            </div>
+            <div class="col-md-6 product-info" data-aos="fade-left">
+                <h1>iPad Pro</h1>
+                <p>
+                    iPad Pro là sản phẩm cao cấp nhất của Apple với thiết kế mỏng nhẹ, màn hình Liquid Retina XDR 12.9
+                    inch hoặc Liquid Retina 11 inch, chip M2 mạnh mẽ, và hệ thống camera kép hỗ trợ AR (thực tế tăng
+                    cường).
+                </p>
+                <p class="price">28.999.000đ</p>
+                <a href="cart.html" class="btn btn-buy" data-id="ipad pro">Mua ngay</a>
+            </div>
+        </div>
+        <div class="feature-list" data-aos="fade-right">
+            <h2>Tính năng nổi bật</h2>
+            <ul>
+                <li>Màn hình Liquid Retina XDR 12.9 inch hoặc Liquid Retina 11 inch với công nghệ Mini-LED, độ sáng cao
+                    và màu sắc chính xác.</li>
+                <li>Chip M2 với hiệu suất vượt trội, hỗ trợ xử lý đồ họa và AI mạnh mẽ.</li>
+                <li>Hệ thống camera kép 12MP (góc rộng và siêu rộng) hỗ trợ quay video 4K và AR.</li>
+                <li>Thiết kế mỏng nhẹ, khung nhôm nguyên khối, không hỗ trợ kháng nước.</li>
+                <li>Pin lớn với thời gian sử dụng lên đến 10 giờ, hỗ trợ sạc nhanh qua USB-C.</li>
+                <li>Tính năng bảo mật Face ID an toàn và tiện lợi.</li>
+                <li>Hỗ trợ 5G (phiên bản Cellular) và Wi-Fi 6E cho tốc độ kết nối siêu nhanh.</li>
+                <li>Hỗ trợ Apple Pencil (thế hệ 2) và Magic Keyboard.</li>
+            </ul>
+        </div>
+        <div class="additional-info" data-aos="fade-up">
+            <h2>Thông tin bổ sung</h2>
+            <p>iPad Pro không chỉ mang lại trải nghiệm sử dụng mượt mà mà còn tích hợp các công nghệ hiện đại nhất.
+                Với hệ điều hành iOS mới nhất, bạn sẽ luôn được cập nhật những tính năng tiên tiến nhất. Ngoài ra, thiết
+                kế siêu bền với chất liệu thép không gỉ và kính cường lực giúp bảo vệ sản phẩm trong mọi hoàn cảnh.</p>
+        </div>
+        <div class="specifications" data-aos="zoom-in">
+            <h2>Thông số kỹ thuật</h2>
+            <table>
+                <tr>
+                    <th>Danh mục</th>
+                    <th>Chi tiết</th>
+                </tr>
+                <tr>
+                    <td>Màn hình</td>
+                    <td>Liquid Retina XDR 12.9 inch (Mini-LED) hoặc Liquid Retina 11 inch</td>
+                </tr>
+                <tr>
+                    <td>Chip xử lý</td>
+                    <td>Apple M2 (8 lõi CPU, 10 lõi GPU)</td>
+                </tr>
+                <tr>
+                    <td>Camera</td>
+                    <td>Camera kép 12MP (góc rộng và siêu rộng), hỗ trợ quay video 4K và AR</td>
+                </tr>
+                <tr>
+                    <td>Dung lượng pin</td>
+                    <td>Lên đến 10 giờ sử dụng, hỗ trợ sạc nhanh qua USB-C</td>
+                </tr>
+                <tr>
+                    <td>Bộ nhớ trong</td>
+                    <td>128GB / 256GB / 512GB / 1TB / 2TB</td>
+                </tr>
+                <tr>
+                    <td>Kết nối</td>
+                    <td>Wi-Fi 6E, 5G (phiên bản Cellular), Bluetooth 5.3</td>
+                </tr>
+                <tr>
+                    <td>Hệ điều hành</td>
+                    <td>iPadOS 16 (nâng cấp lên các phiên bản mới nhất)</td>
+                </tr>
+                <tr>
+                    <td>Kích thước và trọng lượng</td>
+                    <td>
+                        - 12.9 inch: 280.6 x 214.9 x 6.4 mm, 682g (Wi-Fi) / 684g (5G)<br>
+                        - 11 inch: 247.6 x 178.5 x 5.9 mm, 466g (Wi-Fi) / 468g (5G)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Phụ kiện hỗ trợ</td>
+                    <td>Apple Pencil (thế hệ 2), Magic Keyboard, Smart Keyboard Folio</td>
+                </tr>
+            </table>
+        </div>
+        <a href="SanphamIpad.html" class="back-link">← Quay lại trang sản phẩm</a>
+    </div>
+
+    <!--phan 2 hinh nho-->
+    <div class="container py-5">
+        <h1 class="text-center mb-5" style="color: #fff;">Tiếp tục khám phá iPhone.</h1>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card phone-card p-3">
+                    <img src="hinhipad/iphone_16_pro__erqf8e51gl4y_xlarge-removebg-preview.png" alt="iPhone 16 Pro">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #fff;">iPhone 16 Pro</h5>
+                        <p class="card-text" style="color: #fff;">Từ 29.999.000đ hoặc 1.191.000đ/th, trong 24 tháng.</p>
+                        <a href="chitietspiphone.html"><button class="btn btn-primary w-100 mb-2">Tìm hiểu
+                                thêm</button></a>
+                        <a href="ThanhToan.html"><button class="btn btn-outline-light w-100">Mua</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card phone-card p-3">
+                    <img src="hinhipad/iphone_16__dv7rjlqn8niq_xlarge-removebg-preview.png" alt="iPhone 16">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: #fff;">iPhone 16</h5>
+                        <p class="card-text" style="color: #fff;">Từ 22.999.000đ hoặc 958.000đ/th, trong 24 tháng.</p>
+                        <a href="chitietspiphone.html"><button class="btn btn-primary w-100 mb-2">Tìm hiểu
+                                thêm</button></a>
+                        <a href="ThanhToan.html"><button class="btn btn-outline-light w-100">Mua</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Chu nho-->
+    <div class="container1">
+        <div class="content1" style="color: #666;">
+            <p>* Dịch vụ thương mại được cung cấp bởi các đối tác trao đổi của Apple. Báo giá giá trị trao đổi chỉ mang
+                tính ước tính và giá trị thực tế có thể thấp hơn ước tính. Giá trị đổi cũ lấy mới sẽ khác nhau tùy theo
+                tình trạng, năm và cấu hình của thiết bị đủ điều kiện đổi của bạn. Không phải tất cả các thiết bị đều đủ
+                điều kiện nhận điểm tín dụng. Bạn phải ít nhất ở độ tuổi thành niên để đủ điều kiện giao dịch tín dụng.
+                Giá trị đổi cũ lấy mới có thể sẽ được áp dụng cho thiết bị đủ điều kiện mới bạn mua. Ước tính giá trị
+                thực tế được dựa trên việc có nhận được thiết bị đủ điều kiện khớp với thông tin bạn đã mô tả hay không.
+                Thuế giá trị gia tăng (GTGT) có thể sẽ được tính trên toàn bộ giá trị của thiết bị mới bạn mua. Bạn phải
+                xuất trình giấy tờ tùy thân hợp lệ (luật địa phương có thể yêu cầu lưu thông tin này). Các đối tác trao
+                đổi của Apple có quyền từ chối, hủy bỏ hoặc giới hạn số lượng của bất kỳ giao dịch đổi cũ lấy mới nào vì
+                bất kỳ lý do gì. Bạn có thể tìm hiểu thêm thông tin từ đối tác đổi cũ lấy mới của Apple về việc đổi cũ
+                lấy mới và đối tác tái chế về việc tái chế các thiết bị đủ điều kiện. Các hạn chế và giới hạn có thể
+                được áp dụng. Có thể sẽ áp dụng Điều khoản và giới hạn về việc tái chế thiết bị đủ điều kiện. <br>
+                ** Gói thanh toán trả góp bằng Thẻ Tín Dụng có thể được áp dụng cho các cá nhân đủ điều kiện có sở hữu
+                thẻ tín dụng phù hợp của ACB, BIDV, HSBC, Sacombank, Shinhanbank, VIB, Vietcombank, VP Bank. Ðể đủ điều
+                kiện sử dụng gói trả góp bằng Thẻ Tín Dụng trong 3, 6, 9 hoặc 12 tháng thì giá trị mua hàng cho một giao
+                dịch của bạn phải trên 3.000.000đ. Tất cả đơn mua hàng áp dụng gói trả góp bằng Thẻ Tín Dụng phải được
+                bên phát hành thẻ tín dụng của bạn phê duyệt. Vui lòng tham khảo trang web của bên phát hành thẻ tín
+                dụng của bạn để biết các thông tin về điều kiện, phí và lệ phí. Ưu đãi trả góp chỉ được áp dụng cho
+                khách hàng cá nhân sử dụng thẻ tín dụng tiêu dùng. Các đơn hàng mua trên Cửa Hàng Giáo Dục, cửa hàng SMB
+                và đơn mua hàng của tổ chức không đủ điều kiện để áp dụng ưu đãi này. Ðơn mua hàng bằng Thẻ Ghi Nợ không
+                đủ điều kiện để áp dụng ưu đãi này. Nếu đơn hàng trả góp không được bên phát hành thẻ tín dụng của bạn
+                phê duyệt thì chúng tôi sẽ không được thông báo lý do. Vui lòng liên hệ bên phát hành thẻ tín dụng của
+                bạn để biết thêm thông tin. Ưu đãi áp dụng cho giá đã niêm yết hoặc trên tem giá. Khoản phí tài chính sẽ
+                được liệt kê trên sao kê thẻ tín dụng của bạn. Bạn có thể sẽ phải trả một khoản phí xử lý nếu chọn thanh
+                toán qua Trả Góp Bằng Thẻ Tín Dụng. Các khoản phí đi kèm sẽ được thay đổi tùy theo thời hạn áp dụng và
+                tùy vào ngân hàng. Bạn cũng có thể tìm thêm những thông tin khác tại đây. Bạn sẽ được tính phí mua hàng
+                ngay khi đặt hàng và sau đó thanh toán sẽ được chuyển sang hình thức trả góp. Nếu vì bất kỳ lý do gì làm
+                đơn hàng của bạn không được chuyển sang hình thức trả góp, vui lòng liên hệ trực tiếp với ngân hàng phát
+                hành thẻ tín dụng của bạn để được giải đáp thắc mắc và hỗ trợ. Apple không chịu trách nhiệm đối với quy
+                trình chuyển đổi thanh toán trả góp hay được thông báo về lý do tại sao quy trình chuyển đổi này lại
+                không thành công. <br>
+                Trả góp theo tháng với lãi suất 1,67%, sau khi thanh toán lần đầu 20%. Có thêm tùy chọn thanh toán khi
+                hoàn tất giao dịch. Chương trình Trả Góp Hàng Tháng Với MoMo do đối tác tín dụng cung cấp qua ứng dụng
+                MoMo của Công Ty Cổ Phần Dịch Vụ Di Động Trực Tuyến (“MoMo”) chứ không phải Apple. Chỉ cư dân Việt Nam
+                đủ điều kiện mới có thể mua sản phẩm đủ điều kiện qua chương trình này. Tất cả sản phẩm được mua qua
+                hình thức Trả Góp Hàng Tháng Với MoMo đều cần có tài khoản ví điện tử MoMo và phải được đối tác tín dụng
+                của MoMo phê duyệt. Nếu bạn có câu hỏi về điều kiện tín dụng của mình, vui lòng liên hệ với MoMo để nhận
+                câu trả lời từ đối tác tín dụng của MoMo. Ngoài ra, vui lòng tham khảo ứng dụng MoMo hoặc đối tác tín
+                dụng của MoMo để biết điều kiện, phí và phụ phí. Apple có toàn quyền quyết định sản phẩm nào đủ điều
+                kiện hưởng ưu đãi trả góp vào bất cứ lúc nào. Mọi thay đổi về việc lựa chọn sản phẩm, kỳ hạn trả góp và
+                lãi suất đều sẽ làm thay đổi ưu đãi trả góp hàng tháng. Lãi suất quy định là lãi suất tính theo phần
+                trăm hàng tháng. Áp dụng số tiền mua tối thiểu 3.000.000đ cho sản phẩm đủ điều kiện và cần phải thanh
+                toán trước 20% cho mọi sản phẩm bạn mua. Đơn hàng phải được đặt trên Apple Store Trực Tuyến
+                apple.com/vn. Sản phẩm được mua từ Apple Store Trực Tuyến Dành cho Doanh Nghiệp và Apple Store Trực
+                Tuyến Dành Cho Ngành Giáo Dục không đủ điều kiện hưởng ưu đãi trả góp hàng tháng của MoMo. Tiền sẽ được
+                tính vào tài khoản MoMo của bạn khi sản phẩm được vận chuyển đến bạn. Lãi suất hàng tháng trong ưu đãi
+                trả góp của MoMo được tính dựa trên giá bán lẻ của sản phẩm do Apple cung cấp. Giá được hiển thị đã bao
+                gồm thuế GTGT. Số tiền thanh toán hàng tháng được hiển thị chỉ là con số ước tính. Số tiền thanh toán
+                hàng tháng thực tế của bạn sẽ được hiển thị trong phần báo cáo sử dụng trên ứng dụng MoMo. Khi bạn chọn
+                thanh toán qua hình thức Trả Góp Hàng Tháng Với MoMo, Apple có thể sẽ cần chia sẻ số điện thoại di động
+                của bạn với MoMo để xác minh danh tính và hoàn tất yêu cầu thanh toán của bạn. Apple sẽ luôn xử lý thông
+                tin của bạn theo Chính Sách Quyền Riêng Tư của Apple, có tại apple.com/legal/privacy/vn. Mọi thông tin
+                do MoMo thu thập sẽ tuân thủ chính sách quyền riêng tư của họ. <br>
+                Phiên bản beta của Apple Intelligence khả dụng trên tất cả các phiên bản iPhone 16, iPhone 15 Pro và
+                iPhone 15 Pro Max, với Siri và ngôn ngữ thiết bị được thiết lập là tiếng Anh (Úc, Canada, Ireland, New
+                Zealand, Nam Phi, Vương quốc Anh hoặc Mỹ), trên một bản cập nhật iOS 18. Một số tính năng và ngôn ngữ bổ
+                sung sẽ ra mắt vào tháng 4, và các ngôn ngữ khác sẽ ra mắt sau trong cùng năm. Các ngôn ngữ được hỗ trợ
+                trong năm 2025 bao gồm tiếng Trung, tiếng Anh (Ấn Độ, Singapore), tiếng Pháp, tiếng Đức, tiếng Ý, tiếng
+                Nhật, tiếng Hàn, tiếng Bồ Đào Nha, tiếng Tây Ban Nha, và tiếng Việt. <br>
+                Kích thước màn hình: Màn hình có các góc bo tròn theo đường cong tuyệt đẹp và nằm gọn theo một hình chữ
+                nhật chuẩn. Khi tính theo hình chữ nhật chuẩn, kích thước màn hình theo đường chéo là 6,27 inch (iPhone
+                16 Pro) hoặc 6,86 inch (iPhone 16 Pro Max). Diện tích hiển thị thực tế nhỏ hơn. <br>
+                iPhone 16 Pro và iPhone 16 Pro Max có khả năng chống tia nước, chống nước và chống bụi. Sản phẩm đã qua
+                kiểm nghiệm trong điều kiện phòng thí nghiệm có kiểm soát đạt mức IP68 theo tiêu chuẩn IEC 60529 (chống
+                nước ở độ sâu tối đa 6 mét trong vòng tối đa 30 phút). Khả năng chống tia nước, chống nước và chống bụi
+                không phải là các điều kiện vĩnh viễn, và khả năng này có thể giảm do hao mòn thông thường. Không sạc
+                pin khi iPhone đang bị ướt. Vui lòng tham khảo hướng dẫn sử dụng để biết cách lau sạch và làm khô máy.
+                Không bảo hành sản phẩm bị hỏng do thấm chất lỏng. <br>
+                Thời lượng pin tăng lên được tính dựa trên số giờ xem video trên iPhone 16 Pro Max so với iPhone 15 Pro
+                Max. <br>
+                Phụ kiện được bán riêng. <br>
+                Thử nghiệm do Apple thực hiện vào tháng 8 năm 2024 sử dụng các thiết bị và phần mềm phiên bản tiền sản
+                xuất của iPhone 16 Pro và iPhone 16 Pro Max, Cáp Sạc USB-C với Bộ Tiếp Hợp Nguồn USB-C của Apple (Phiên
+                bản A2305 20W), và Bộ Sạc MagSafe của Apple (Phiên bản A2580 1 mét và Phiên bản A3250 2 mét) với Bộ Tiếp
+                Hợp Nguồn USB-C của Apple (Phiên bản A2164 30W). Thử nghiệm sạc nhanh được thực hiện với các thiết bị
+                iPhone cạn pin. Thời gian được đo từ thời điểm logo Apple xuất hiện khi thiết bị khởi động. Thời gian
+                sạc thay đổi tùy thuộc vào chế độ cài đặt và các yếu tố môi trường; các kết quả thực tế sẽ khác nhau.
+                Tất cả các xác nhận về thời lượng pin phụ thuộc vào cấu hình mạng và nhiều yếu tố khác; các kết quả thực
+                tế sẽ khác nhau. Pin có giới hạn chu kỳ sạc và cuối cùng có thể cần được thay thế. Thời lượng pin và chu
+                kỳ sạc khác nhau tùy theo cách sử dụng và cài đặt. Truy cập apple.com/vn/batteries và
+                apple.com/vn/iphone/battery.html để biết thêm thông tin. <br>
+                iPhone 16 và iPhone 16 Pro có thể phát hiện va chạm ô tô nghiêm trọng và gọi trợ giúp. Yêu cầu kết nối
+                mạng di động hoặc cuộc gọi Wi-Fi. <br>
+                Dựa trên phân bổ cân bằng khối lượng.
+                Phân tích về bao bì đóng gói bán lẻ theo trọng lượng của Hoa Kỳ. Băng dính, mực và lớp phủ được loại trừ
+                khỏi tính toán của chúng tôi về hàm lượng nhựa và trọng lượng bao bì đóng gói. <br>
+                Số lượng hộp có thể đặt trong một pallet tăng lên, trừ pallet được vận chuyển đến các địa điểm sau: Hoa
+                Kỳ, Puerto Rico, Quần đảo Virgin thuộc Hoa Kỳ, Guam, và Canada. <br>
+                Yêu cầu iPhone và Apple Watch có chip Ultra Wideband thế hệ thứ 2. Tính năng Ultra Wideband chỉ khả dụng
+                ở một số khu vực. <br>
+                Xác nhận về thời lượng pin dành cho các phiên bản lớn hơn. Tất cả các xác nhận về thời lượng pin phụ
+                thuộc vào cấu hình mạng và nhiều yếu tố khác; các kết quả thực tế sẽ khác nhau. Pin có giới hạn chu kỳ
+                sạc và cuối cùng có thể cần được thay thế. Thời lượng pin và chu kỳ sạc khác nhau tùy theo cách sử dụng
+                và cài đặt. Truy cập apple.com/vn/batteries và apple.com/vn/iphone/battery.html để biết thêm thông tin.
+                DEATH STRANDING DIRECTOR'S CUT © 2024 Sony Interactive Entertainment Inc. / KOJIMA PRODUCTIONS Co., Ltd.
+                / HIDEO KOJIMA. Được xuất bản bởi 505 Games. <br>
+                Apple Vision Pro hiện chưa có ở tất cả các quốc gia và khu vực. <br>
+                Một số tính năng có thể thay đổi. Một số tính năng, ứng dụng và dịch vụ chỉ khả dụng ở một số khu vực
+                hoặc ngôn ngữ. <br>
+
+                Một số tính năng yêu cầu phải có các phần cứng và phần mềm nhất định. Để biết thêm thông tin, truy cập
+                trang Tính Năng Khả Dụng. <br>
+            </p>
+        </div>
+    </div>
+    <footer data-aos="fade-up">
+        © 2025 - Cửa hàng iPhone cao cấp. AT Apple Zone.
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+<script>
+    // Giỏ hàng (lưu trong localStorage)
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Xử lý sự kiện click vào nút "Mua ngay"
+    document.querySelector('.btn-buy').addEventListener('click', function (event) {
+        event.preventDefault(); // Ngăn chặn hành động mặc định
+        const productId = this.getAttribute('data-id'); // Lấy ID sản phẩm
+        const productName = "iPad Pro"; // Tên sản phẩm
+        const productPrice = 28999000; // Giá sản phẩm
+        const productImage = "hinhipad/pt_ipad_pro__6bgrkek0jnm2_xlarge.png"; // Đường dẫn hình ảnh
+
+        // Tìm xem sản phẩm đã có trong giỏ hàng chưa
+        const existingProduct = cart.find(item => item.id === productId);
+        if (existingProduct) {
+            existingProduct.quantity += 1; // Nếu đã tồn tại, tăng số lượng
+        } else {
+            cart.push({
+                id: productId,
+                name: productName,
+                price: productPrice,
+                image: productImage, // Thêm hình ảnh sản phẩm
+                quantity: 1 // Số lượng mặc định
+            });
+        }
+
+        // Lưu lại giỏ hàng vào localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Thông báo cho người dùng
+        alert(`${productName} đã được thêm vào giỏ hàng!`);
+    });
+</script>
+
+
+</html>

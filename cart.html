@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f5f5f7;
+            font-family: -apple-system, BlinkMacSystemFont, "San Francisco", Roboto, Arial, sans-serif;
+            color: #1d1d1f;
+            margin: 0;
+            padding: 0;
+        }
+
+        .cart-container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-align: left;
+            text-transform: uppercase;
+            padding: 15px;
+            border-bottom: 1px solid #e5e5e5;
+            color: #86868b;
+        }
+
+        table td {
+            padding: 15px;
+            border-bottom: 1px solid #e5e5e5;
+            vertical-align: middle;
+        }
+
+        table img {
+            width: 60px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .product-name {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1d1d1f;
+        }
+
+        .product-price,
+        .product-total {
+            font-size: 0.875rem;
+            font-weight: 400;
+            color: #86868b;
+        }
+
+        .product-quantity button {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            color: #0071e3;
+            cursor: pointer;
+        }
+
+        .product-quantity button:hover {
+            text-decoration: underline;
+        }
+
+        .btn-checkout {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #0071e3;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .btn-checkout:hover {
+            background: #005bb5;
+        }
+
+        .empty-cart {
+            text-align: center;
+            font-size: 1.25rem;
+            color: #86868b;
+        }
+
+        .total {
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .continue-shopping {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.875rem;
+            color: #0071e3;
+            text-decoration: none;
+        }
+
+        .continue-shopping:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cart-container">
+        <h1>Giỏ hàng</h1>
+        <div id="cart-content">
+            <!-- Nội dung giỏ hàng sẽ được thêm tại đây -->
+        </div>
+        <a href="Sanphamiphone.html" class="continue-shopping">Tiếp tục mua sắm</a>
+    </div>
+
+    <script>
+        // Lấy giỏ hàng từ localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Hàm hiển thị giỏ hàng
+        function renderCart() {
+            const cartContent = document.getElementById('cart-content');
+            if (cart.length === 0) {
+                cartContent.innerHTML = '<p class="empty-cart">Giỏ hàng của bạn đang trống.</p>';
+                return;
+            }
+
+            let tableHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>Tổng cộng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                tableHTML += `
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="${item.image}" alt="" class="me-3">
+                                <span class="product-name">${item.name}</span>
+                            </div>
+                        </td>
+                        <td class="product-price">${item.price.toLocaleString()}đ</td>
+                        <td class="product-quantity">
+                            <button onclick="changeQuantity(${index}, -1)">-</button>
+                            ${item.quantity}
+                            <button onclick="changeQuantity(${index}, 1)">+</button>
+                        </td>
+                        <td class="product-total">${itemTotal.toLocaleString()}đ</td>
+                    </tr>
+                `;
+            });
+
+            tableHTML += `
+                    </tbody>
+                </table>
+                <p class="total">Tổng cộng: ${total.toLocaleString()}đ</p>
+                <a href="ThanhToan.html"><button class="btn-checkout">Thanh toán</button></a>
+            `;
+
+            cartContent.innerHTML = tableHTML;
+        }
+
+        // Hàm thay đổi số lượng sản phẩm
+        function changeQuantity(index, amount) {
+            cart[index].quantity += amount;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1); // Xóa sản phẩm nếu số lượng <= 0
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        // Hiển thị giỏ hàng khi tải trang
+        renderCart();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Thanh Toán</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /*lien ket nhanh*/
+
+        .container1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header1 h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .content1 p {
+            margin: 10px 0;
+            font-size: smaller;
+        }
+
+        .content1 a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .content1 a:hover {
+            text-decoration: underline;
+        }
+
+        @media only screen and (max-width: 320px) {
+            .carousel-inner .row .col-md-3 {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media only screen and (max-width: 375px) {
+            .carousel-inner .row .col-md-3 {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media only screen and (max-width: 425px) {
+            .carousel-inner .row .col-md-3 {
+                margin-bottom: 20px;
+            }
+        }
+
+        .btn {
+            padding: 5px 200px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--Header-->
+    <nav class="navbar navbar-light bg-white shadow-sm px-4">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="123.html">AT Apple Zone</a>
+            <div class="d-flex align-items-center">
+                <a href="123.html" class="me-3 text-dark text-decoration-none">Trang Chủ</a>
+                <a href="cart.html" class="me-3 text-dark text-decoration-none">Giỏ Hàng</a>
+                <form class="d-flex">
+                    <input class="form-control form-control-sm me-2" type="search" placeholder="Tìm kiếm">
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2 class="mb-4">Chúng tôi giao hàng cho bạn đến địa chỉ nào?</h2>
+
+        <form>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="firstName" class="form-label">Tên</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="Nhập tên của bạn">
+                </div>
+                <div class="col-md-6">
+                    <label for="lastName" class="form-label">Họ</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Nhập họ của bạn">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="address" class="form-label">Địa chỉ</label>
+                <input type="text" class="form-control" id="address" placeholder="Nhập địa chỉ của bạn">
+            </div>
+
+            <div class="mb-3">
+                <label for="address2" class="form-label">Thông tin địa chỉ thứ hai (không bắt buộc)</label>
+                <input type="text" class="form-control" id="address2" placeholder="Nhập địa chỉ thứ hai">
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="city" class="form-label">Tỉnh/Thành phố</label>
+                    <select class="form-select" id="city">
+                        <option selected>Chọn tỉnh/thành phố</option>
+                        <option>An Giang</option>
+                        <option>Bà Rịa - Vũng Tàu</option>
+                        <option>Bắc Giang</option>
+                        <option>Bắc Kạn</option>
+                        <option>Bạc Liêu</option>
+                        <option>Bắc Ninh</option>
+                        <option>Bến Tre</option>
+                        <option>Bình Định</option>
+                        <option>Bình Dương</option>
+                        <option>Bình Phước</option>
+                        <option>Bình Thuận</option>
+                        <option>Cà Mau</option>
+                        <option>Cần Thơ</option>
+                        <option>Cao Bằng</option>
+                        <option>Đà Nẵng</option>
+                        <option>Đắk Lắk</option>
+                        <option>Đắk Nông</option>
+                        <option>Điện Biên</option>
+                        <option>Đồng Nai</option>
+                        <option>Đồng Tháp</option>
+                        <option>Gia Lai</option>
+                        <option>Hà Giang</option>
+                        <option>Hà Nam</option>
+                        <option>Hà Nội</option>
+                        <option>Hà Tĩnh</option>
+                        <option>Hải Dương</option>
+                        <option>Hải Phòng</option>
+                        <option>Hậu Giang</option>
+                        <option>Hòa Bình</option>
+                        <option>Hưng Yên</option>
+                        <option>Khánh Hòa</option>
+                        <option>Kiên Giang</option>
+                        <option>Kon Tum</option>
+                        <option>Lai Châu</option>
+                        <option>Lâm Đồng</option>
+                        <option>Lạng Sơn</option>
+                        <option>Lào Cai</option>
+                        <option>Long An</option>
+                        <option>Nam Định</option>
+                        <option>Nghệ An</option>
+                        <option>Ninh Bình</option>
+                        <option>Ninh Thuận</option>
+                        <option>Phú Thọ</option>
+                        <option>Phú Yên</option>
+                        <option>Quảng Bình</option>
+                        <option>Quảng Nam</option>
+                        <option>Quảng Ngãi</option>
+                        <option>Quảng Ninh</option>
+                        <option>Quảng Trị</option>
+                        <option>Sóc Trăng</option>
+                        <option>Sơn La</option>
+                        <option>Tây Ninh</option>
+                        <option>Thái Bình</option>
+                        <option>Thái Nguyên</option>
+                        <option>Thanh Hóa</option>
+                        <option>Thừa Thiên Huế</option>
+                        <option>Tiền Giang</option>
+                        <option>TP. Hồ Chí Minh</option>
+                        <option>Trà Vinh</option>
+                        <option>Tuyên Quang</option>
+                        <option>Vĩnh Long</option>
+                        <option>Vĩnh Phúc</option>
+                        <option>Yên Bái</option>
+                    </select>
+
+                </div>
+                <div class="col-md-6">
+                    <label for="district" class="form-label">Quận/Huyện</label>
+                    <select class="form-select" id="district">
+                        <option selected>Chọn Quận/Huyện</option>
+                        <option>Quận 1</option>
+                        <option>Quận 2</option>
+                        <option>Quận 3</option>
+                        <option>Quận 4</option>
+                        <option>Quận 5</option>
+                        <option>Quận 6</option>
+                        <option>Quận 7</option>
+                        <option>Quận 8</option>
+                        <option>Quận 9</option>
+                        <option>Quận 10</option>
+                        <option>Quận 11</option>
+                        <option>Quận 12</option>
+                        <option>Quận Tân Bình</option>
+                        <option>Quận Tân Phú</option>
+                        <option>Quận Bình Tân</option>
+                        <option>Quận Tân Phú</option>
+                        <option>Quận Bình Thạnh</option>
+                        <option>Quận Gò Vấp</option>
+                        <option>Quận Phú Nhuận</option>
+                        <option>Huyện Bình Chánh</option>
+                        <option>Huyện Củ Chi</option>
+                        <option>Huyện Nhà Bè</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="ward" class="form-label">Phường</label>
+                    <input type="text" class="form-control" id="ward" placeholder="Nhập phường">
+                </div>
+                <div class="col-md-6">
+                    <label for="postalCode" class="form-label">Mã Bưu Điện (không bắt buộc)</label>
+                    <input type="text" class="form-control" id="postalCode" placeholder="Nhập mã bưu điện">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="country" class="form-label">Quốc Gia/Khu Vực</label>
+                <input type="text" class="form-control" id="country" value="Việt Nam" readonly>
+            </div>
+
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="businessAddress">
+                <label class="form-check-label" for="businessAddress">
+                    Đây là địa chỉ kinh doanh
+                </label>
+            </div>
+
+            <h4 class="mt-4">Thông tin liên hệ của bạn là gì?</h4>
+            <div class="mb-3">
+                <input type="email" class="form-control" id="email" placeholder="Nhập email của bạn">
+            </div>
+            <div class="mb-3">
+                <input type="numberphone" class="form-control" id="numberphone" placeholder="Nhập Số Điện Thoại của bạn">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Tiếp tục</button>
+        </form>
+    </div>
+    <div class="container1">
+        <div class="header1" style="text-align: left;">
+            <h1>Câu Hỏi Thường Gặp về Giao Hàng</h1>
+        </div>
+        <div class="content1">
+            <p>Chương trình Trả Góp Hàng Tháng Với MoMo do (các) đối tác tín dụng cung cấp qua ứng dụng MoMo của Công Ty
+                Cổ Phần Dịch Vụ Di Động Trực Tuyến (“MoMo”) chứ không phải Apple. Chỉ cư dân Việt Nam đủ điều kiện mới
+                có thể mua sản phẩm đủ điều kiện qua chương trình này. <br>
+                Tất cả sản phẩm được mua qua hình thức Trả Góp Hàng Tháng Với MoMo đều cần có tài khoản ví điện tử MoMo
+                và phải được (các) đối tác tín dụng của MoMo phê duyệt. Nếu bạn có câu hỏi về điều kiện tín dụng của
+                mình, vui lòng liên hệ với MoMo để nhận câu trả lời từ (các) đối tác tín dụng của MoMo. Ngoài ra, vui
+                lòng tham khảo ứng dụng MoMo hoặc (các) đối tác tín dụng của MoMo để biết điều kiện, phí và phụ phí.
+                Apple có toàn quyền quyết định sản phẩm nào đủ điều kiện hưởng ưu đãi trả góp vào bất cứ lúc nào. Mọi
+                thay đổi về việc lựa chọn sản phẩm, kỳ hạn trả góp và phí dịch vụ đều sẽ làm thay đổi ưu đãi trả góp
+                hàng tháng. Phí dịch vụ quy định là phí được tính theo phần trăm hàng tháng. Áp dụng số tiền mua tối
+                thiểu 3.750.000đ cho sản phẩm đủ điều kiện và cần phải thanh toán trước 20% cho mọi sản phẩm bạn mua.
+                Đơn hàng phải được đặt trên Apple Store Trực Tuyến www.apple.com/vn. <br>
+                Sản phẩm được mua từ Apple Store Trực Tuyến Dành cho Doanh Nghiệp và Apple Store Trực Tuyến Dành Cho
+                Ngành Giáo Dục không đủ điều kiện hưởng ưu đãi trả góp hàng tháng của MoMo. <br>
+                Tiền sẽ được tính vào tài khoản MoMo của bạn khi sản phẩm được vận chuyển đến bạn. Phí dịch vụ hàng
+                tháng trong ưu đãi trả góp của MoMo được tính dựa trên giá bán lẻ của sản phẩm do Apple cung cấp. Giá
+                được hiển thị đã bao gồm thuế GTGT. Số tiền thanh toán hàng tháng được hiển thị chỉ là con số ước tính.
+                Số tiền thanh toán hàng tháng thực tế của bạn sẽ được hiển thị trong phần báo cáo sử dụng trên ứng dụng
+                MoMo. <br>
+                Khi bạn chọn thanh toán qua hình thức Trả Góp Hàng Tháng Với MoMo, Apple có thể sẽ cần chia sẻ số điện
+                thoại di động của bạn với MoMo để xác minh danh tính và hoàn tất yêu cầu thanh toán của bạn. Apple sẽ
+                luôn xử lý thông tin của bạn theo Chính Sách Quyền Riêng Tư của Apple, có tại
+                www.apple.com/legal/privacy/vn. Mọi thông tin do MoMo thu thập sẽ tuân thủ chính sách quyền riêng tư của
+                họ. <br>
+
+                Giá hiển thị đã bao gồm tất cả các khoản thuế. Giao hàng miễn phí cho tất cả đơn hàng. <br>
+
+                Apple sử dụng công nghệ mã hóa theo tiêu chuẩn ngành để bảo mật thông tin cá nhân của bạn. <br>
+
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

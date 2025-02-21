@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Tìm Kiếm Sản Phẩm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input,
+        select {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .product-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .product-card h3 {
+            margin: 10px 0;
+            color: #333;
+            min-height: 50px;
+            line-height: 1.2;
+            overflow: hidden;
+        }
+
+        .product-card p {
+            margin: 5px 0;
+            color: #555;
+            min-height: 20px;
+            line-height: 20px;
+        }
+
+        .product-card .button-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .product-card button {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .add-to-cart {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .buy-now {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .add-to-cart:hover {
+            background-color: #218838;
+        }
+
+        .buy-now:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tìm Kiếm Sản Phẩm</h1>
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Tìm kiếm sản phẩm...">
+        <select id="category">
+            <option value="All">Tất cả</option>
+            <option value="iPhone">iPhone</option>
+            <option value="MacBook">MacBook</option>
+            <option value="iPad">iPad</option>
+            <option value="Watch">Watch</option>
+        </select>
+        <select id="sort">
+            <option value="name">Tên (A-Z)</option>
+            <option value="numberAsc">Giá (Thấp đến Cao)</option>
+            <option value="numberDesc">Giá (Cao đến Thấp)</option>
+        </select>
+    </div>
+    <div id="product-list" class="product-list"></div>
+
+    <script>
+        const products = [
+            { id: 1, name: "iPhone 15 128GB- Chính Hãng VN/A", category: "iPhone", number: 18.29, image: "timkiem/1198thay-man-hinh-iphone-1515-plus15-pro15-pro-max.jpg" },
+            { id: 2, name: "MacBook Air M3 13 inch 10GPU 8CPU 16GB 512GB - Chính Hãng VN", category: "MacBook", number: 30.59, image: "timkiem/macbook-air-m3-250207013117.webp" },
+            { id: 4, name: "Apple Watch SE 2 2024 GPS 44mm Viền Nhôm Dây Cao Su - Chính hãng VN/A", category: "Watch", number: 6.29, image: "timkiem/apple-watch-se-40mm-gps-cong-ty-mkq03vn_a_1.jpeg" },
+            { id: 5, name: "iPhone 15 Plus 128GB- Chính Hãng VN/A", category: "iPhone", number: 21.89, image: "timkiem/1198thay-man-hinh-iphone-1515-plus15-pro15-pro-max.jpg" },
+            { id: 6, name: "Apple Watch S9 LTE 45mm Viền Nhôm Dây Cao Su - Chính hãng VN/A", category: "Watch", number: 9.89, image: "timkiem/240529020120-apple-watch-s9-lte-41mm-vien-nhom-day-silicone-trang-starlight-thumb-1-650x650.webp" },
+            { id: 8, name: "Apple Watch Ultra 2 (2024) LTE 49mm Viền Titanium Dây Milan", category: "Watch", number: 25.49, image: "timkiem/apple-watch-ultra-2-lte-49mm-vien-titanium-day-milan-241008102016.webp" },// Thêm sản phẩm mẫu mới
+            { id: 9, name: "iPad Air 6 M2 13 inch 5G 1TB- Chính hãng VN", category: "iPad", number: 39.49, image: "timkiem/240528102009-ipad-air-13-inch-m2-chip-cellular-blue-2-up-screen-usen.webp" }, // Thêm sản phẩm mẫu mới
+            { id: 3, name: "iPad Pro M4 13 inch 5G 2TB - Chính hãng VN", category: "iPad", number: 71.299, image: "timkiem/240527044356-vn-ipad-pro-13-m4-cellular-space-black-pdp-image-position-1b.webp" },// Thêm sản phẩm mẫu mới
+            { id: 10, name: "MacBook Pro M3 14 inch 10GPU 8CPU 24GB/512GB - Chính Hãng VN", category: "MacBook", number: 47.19, image: "timkiem/macboook-m3-250206041801.webp" },
+            { id: 11, name: "MacBook Air M3 13inch 10GPU 8CPU 24GB 512GB - Chính Hãng VN", category: "MacBook", number: 36.19, image: "timkiem/macbook-air-m33-250207011121.webp" },
+            { id: 12, name: "iPhone 16 128GB - Chính hãng VN/A", category: "iPhone", number: 20.49, image: "timkiem/ip16-128GB.webp" },
+            { id: 13, name: "iPhone 16 Pro 128GB - Chính hãng VN/A", category: "iPhone", number: 26.79, image: "timkiem/240910093852-iphone-16-pro-max-desert-titanium-pd.webp" },
+            { id: 14, name: "iPhone 16 Plus 256GB - Chính hãng VN/A", category: "iPhone", number: 27.29, image: "timkiem/iphone-16-plus-black-pdp-image-position-1a-black-color-vn-vi.webp" },
+            { id: 15, name: "iPhone 16 Pro Max 256GB - Chính hãng VN/A", category: "iPhone", number: 32.29, image: "timkiem/iphone-16-pro-max-desert-titanium-pdp-image-position-1a-desert-titanium-color-vn-vi.webp" },
+            { id: 16, name: "iPhone 14 128GB - Chính hãng VN/A", category: "iPhone", number: 15.79, image: "timkiem/iphone-14-128g-blue-minh-tuan-mobile.webp" },
+            { id: 17, name: "iPhone 14 Plus 128GB - Chính hãng VN/A", category: "iPhone", number: 18.89, image: "timkiem/ip14-plus-128.webp" },
+            { id: 18, name: "iPhone 13 128GB - Chính Hãng VN/A", category: "iPhone", number: 12.49, image: "timkiem/iphone-13-03.webp" },
+
+        ];
+
+        function renderProducts() {
+            const searchValue = document.getElementById("search").value.toLowerCase();
+            const categoryValue = document.getElementById("category").value;
+            const sortValue = document.getElementById("sort").value;
+
+            let filteredProducts = products.filter(p =>
+                p.name.toLowerCase().includes(searchValue) && (categoryValue === "All" || p.category === categoryValue)
+            );
+
+            filteredProducts.sort((a, b) => {
+                if (sortValue === "numberAsc") return a.number - b.number;
+                if (sortValue === "numberDesc") return b.number - a.number;
+                return a.name.localeCompare(b.name);
+            });
+
+            const productList = document.getElementById("product-list");
+            productList.innerHTML = "";
+
+            if (filteredProducts.length > 0) {
+                filteredProducts.forEach(product => {
+                    const productCard = document.createElement("div");
+                    productCard.className = "product-card";
+                    productCard.innerHTML = `
+                        <img src="${product.image}" alt="${product.name}" onerror="this.onerror=null; this.src='default-image.jpg';">
+                        <h3>${product.name}</h3>
+                        <p>Giá: ${product.number}0.000 VNĐ</p>
+                        <div class="button-container">
+                            <button class="add-to-cart">Thêm vào giỏ hàng</button>
+                            <button class="buy-now">Mua ngay</button>
+                        </div>
+                    `;
+                    productList.appendChild(productCard);
+                });
+            } else {
+                productList.innerHTML = "<p style='text-align: center; color: #888;'>Không tìm thấy sản phẩm</p>";
+            }
+        }
+
+        document.getElementById("search").addEventListener("input", renderProducts);
+        document.getElementById("category").addEventListener("change", renderProducts);
+        document.getElementById("sort").addEventListener("change", renderProducts);
+
+        renderProducts();
+    </script>
+</body>
+
+</html>
